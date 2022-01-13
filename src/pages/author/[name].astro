@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseHead from '../compositions/BaseHead.astro';
+import AuthorBio from '../components/AuthorBio.astro';
+
+//geting and shaping content
+import { getContent, getImageUrl, convertToMarkdown, formatBlogPostDate } from '../../utils/helpers.js';
+import { queries } from '../../utils/queries.ts';
+import type { Author } from '../../utils/queires.ts';
+
+export interface Props {
+  author: Author;
+}
+
+export async function getStaticPaths() {
+    const allAuthors: Author[] = await getContent(queries.allAuthors);
+
+  return allAuthors.map(author  => ({
+      params: {name: author.name}, 
+      props: {author}
+    }));
+}
+
+//from props.author not just props
+const { name, image, bio}= Astro.props.author;
+const ogImageUrl = getImageUrl(image).size(512,512).url();
+---
+  
+<BaseLayout>
+
+  <head slot="head">
+    <BaseHead title={name} description={`Author page for ${name}`} canonicalURL={Astro.request.canonicalURL} />
+    <!-- TODO: add SocialGraph and structured data -->
+  </head>
+
+    <!-- blank slate component, to be customized -->
+  <AuthorBio  />
+
+</BaseLayout>

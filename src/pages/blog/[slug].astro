@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseHead from '../compositions/BaseHead.astro';
+import SocialGraph from '../components/SocialGraph.astro';
+import StructuredData from '../components/StructuredData.jsx';
+import BlogPost from '../../components/BlogPost.astro';
+import { generateStructuredData } from '../utils/siteConfig.js';
+import { generateRssData } from '../../utils/siteConfig.js';
+
+//geting and shaping content
+import { getContent, getImageUrl, convertToMarkdown, formatBlogPostDate } from '../../utils/helpers.js';
+import { queries } from '../../utils/queries.ts';
+import type { Post } from '../../utils/queires.ts';
+
+export interface Props {
+  post: Post;
+}
+
+export async function getStaticPaths({rss}) {
+  const allBlogPosts: Post[] = await getContent(queries.allPosts);
+
+  rss(generateRssData(allBlogPosts));//fix the use of this function, preserve rssdata type
+
+  return allBlogPosts.map(post  => ({
+      params: {slug: post.slug.current}, 
+      props: {post}
+    }));
+}
+
+//from props.post not just props
+const { title, mainImage, imageAlt, author, publishedAt, description, bodyRaw }= Astro.props.post;
+const ogImageUrl = getImageUrl(mainImage).size(1200,630).url();
+---
+  
+<BaseLayout>
+
+  <head slot="head">
+    <BaseHead {title} {description} canonicalURL={Astro.request.canonicalURL} />
+    <SocialGraph {title} {description} canonicalURL={Astro.request.canonicalURL} imageUrl={ogImageUrl}/>
+    <StructuredData ldData={generateStructuredData(title, author, Astro.request.canonicalURL, publishedAt, ogImageUrl, description)} />
+  </head>
+
+  <!-- simple component to be customized -->
+  <BlogPost 
+    title={title}
+    author={author?.name}
+    publishedTime={formatBlogPostDate(publishedAt)}
+    image={{
+      width: 720,
+      height: 420,
+      src: getImageUrl(mainImage).size(720,420).url(),
+      alt: imageAlt
+    }}
+    postBody={convertToMarkdown(bodyRaw)} 
+  />
+</BaseLayout>

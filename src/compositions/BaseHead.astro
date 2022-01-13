@@ -1,0 +1,56 @@
+---
+//TODO: currently over-stuffed with meta data, break into seperate heads
+  import { site } from '../utils/siteConfig.ts';
+  
+  export interface Props {
+    title?: string;
+    description?: string;
+    canonicalURL?: URL;
+  }
+  
+  const { title, description, canonicalURL } = Astro.props;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+<link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/style/global.css"/>
+<!-- Primary Meta Tags -->
+<title>{title || site.title}</title>
+<meta name="title" content={title || site.title} />
+<meta name="description" content={description || site.description} />
+<!-- Sitemap -->
+<link rel="sitemap" href="/sitemap.xml">
+<!-- Canonical -->
+<link rel="canonical" href={canonicalURL || site.url}>
+
+<link rel="alternate" type="application/rss+xml" title={`${site.name} Blog`} href={`${site.url}/feed/blog.xml`}/>
+
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- asyc load material icons -->
+<link
+rel="preload"
+href="https://fonts.googleapis.com/icon?family=Material+Icons"
+as="style"
+onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+    type="text/css">
+</noscript>
+<link
+rel="preload"
+href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+as="style"
+onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+    rel="stylesheet"
+    type="text/css">
+</noscript>

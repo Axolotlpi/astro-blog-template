@@ -1,0 +1,31 @@
+{
+  "name": "astro-sanity-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Axolotlpi/astro-sanity-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Axolotlpi/astro-sanity-template/issues"
+  },
+  "homepage": "https://github.com/Axolotlpi/astro-sanity-template#readme",
+  "dependencies": {
+    "@sanity/block-content-to-markdown": "^0.0.5",
+    "@sanity/image-url": "^1.0.1",
+    "astro": "^0.22.1",
+    "date-fns": "^2.28.0"
+  },
+  "devDependencies": {
+    "prettier": "2.5.1"
+  }
+}
