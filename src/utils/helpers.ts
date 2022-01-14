@@ -1,5 +1,5 @@
 import { parseISO, format } from 'date-fns';
-import sanity from './mySanityClient.js'; //astro doesn't play well with sanity's cjs, so we use this one for now
+import sanity from '@sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
 import BlocksToMarkdown from '@sanity/block-content-to-markdown';
 
