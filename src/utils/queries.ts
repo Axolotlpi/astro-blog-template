@@ -1,9 +1,16 @@
 //this file defines the coupling between cms schema and local types
 
-export const queries = {
-  allPosts: '',
+export type queries = {
+  string: string;
+  reformat: (res: any) => any;
 };
 
+export const queries = {
+  allPosts: {
+    string: '',
+    reformat: (res) => res, //for reshaping response
+  },
+};
 export type SiteConfig = {
   name: string;
   canonicalURL: string;

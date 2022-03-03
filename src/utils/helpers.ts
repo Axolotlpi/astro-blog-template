@@ -17,7 +17,9 @@ const client = new sanity({
 });
 
 export async function getContent(query) {
-  return client.fetch(query);
+  const res = await client.fetch(query);
+  if (!res || !query.reformat) return res;
+  return query.reformat(res);
 }
 
 export function getImageUrl(source) {
