@@ -1,13 +1,13 @@
 # Astro Blog Template
 
-This template is meant to be a starting point for a blog, or similar article site based on Astro js and biased towards using Sanity io.
+This template is meant to be my go to for a blog or similar article site based on Astro js and biased towards using Sanity io.
 
 This is by no means generic to any use case and is mainly for my preferences, but feel free to use it if you like.
 
 **This template was based off of Jaydan Urwin's "[Astro Sanity Minimal Starter](http://https://github.com/jaydanurwin/astro-sanity-minimal-starter 'Astro Sanity Minimal Starter')"  
 Thank you Jaydan for the good SEO**
 
-### Features
+### Features:
 
 - RSS
 - Structured Data in JSONLD format
@@ -38,7 +38,7 @@ But it's also mainly for my own reference.
 ### File Structure
 
 Nothing too weird here, just note that I've added a "compositions" directory.  
-The main reason for this is to place anything that is to specific to be placed in components,  
+The main reason for this is to place anything that is too specific to be placed in components,  
 and reusable enough not to go directly in pages. As the name implies this usually results in a  
 "composition" of components or plain tags. Either way I made it up, feel free to delete it.
 
@@ -52,21 +52,15 @@ I added types to make the seperation more bearable.
 
 ### Queries
 
-This one is my favorite. I've built this with Sanity io in mind,  
-but I tried to decouple it as best as it made sense to. This file will contain  
-a sort of mapping from the query+transforms and the types specified in the file.  
-This way the coupling between your props and the queries are defined in the types you define here.
+This one is my favorite. I tried to decouple it as best as it made sense to. This file will contain  
+a sort of mapping from the query+projections and the types specified in the file.  
+If you're using something without projections (eg. GQL) you can still reformat the query here  
+by creating a reformat function for that query. Basically the relationship between your  
+types and queries are defined here so you only have to worry about the types in the rest of the code.
 
 ### Helpers
 
 These are hard to define. Their main benifit is the abstracting out of npm modules  
 you may be using. They serve to hide implementation logic that clutters your pages.  
 In general I try to make them reusable and generic, but things like the imgUrlBuillder  
-just have to be coupled to the creation of the site anyway.
-
-### General Tips
-
-I prefer to keep components simple and uncoupled to the site.  
-That is, they can be reused in another project. Then compose them in reusable,  
-but more specific, "compositions".  
-Define types that benifit from being typed. Don't type everything.
+just have to be coupled to the creation of the site for now.
