@@ -2,7 +2,7 @@ import type { Post, SiteConfig, Author } from './queries';
 
 export const site: SiteConfig = {
   name: '',
-  url: '',
+  canonicalURL: '',
   title: '',
   description: '',
   mainImage: '',
@@ -22,6 +22,7 @@ export const generateStructuredData = (
   title: string,
   author: Author,
   permalink: string,
+  siteUrl: string,
   datePublished: string, //iso 8601 format
   mainImage: string,
   description: string
@@ -39,8 +40,8 @@ export const generateStructuredData = (
   },
   publisher: {
     '@type': 'Organization',
-    name: `${site.name} Blog`,
-    url: `${site.url}/blog/`,
+    name: `${title} Blog`,
+    url: `${siteUrl}/blog/`,
   },
   author: {
     '@type': 'Person',
@@ -51,7 +52,7 @@ export const generateStructuredData = (
       width: 512,
       height: 512,
     },
-    url: `${site.url}/author/${author.name}`,
+    url: `${siteUrl}/author/${author.name}`,
   },
 });
 

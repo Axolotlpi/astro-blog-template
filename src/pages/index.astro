@@ -1,8 +1,8 @@
 ---
     import BaseLayout from '../layouts/BaseLayout.astro';
-    import { site } from '../utils/siteConfig.ts';
+    import { queries } from '../utils/queries.ts';
+    //const stuff = await getContent(query)
 ---
-<!-- test svelte-like prop passing here -->
-<BaseLayout title={site.title} description={site.description} permalink={site.url} >
+<BaseLayout title={'example'} description={'this prop overrides siteConfig'} canonicalURL={'this can be fetched and passed in'} >
     
 </BaseLayout>

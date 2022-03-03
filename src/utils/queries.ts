@@ -6,7 +6,7 @@ export const queries = {
 
 export type SiteConfig = {
   name: string;
-  url: string;
+  canonicalURL: string;
   title: string;
   description: string;
   mainImage: any;

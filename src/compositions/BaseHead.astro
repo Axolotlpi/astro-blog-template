@@ -1,56 +1,48 @@
 ---
-//TODO: currently over-stuffed with meta data, break into seperate heads
+  import SocialGraph from '../components/SocialGraph.astro';
   import { site } from '../utils/siteConfig.ts';
   
   export interface Props {
     title?: string;
     description?: string;
-    canonicalURL?: URL;
+    canonicalURL?: string;
+    socialImage?: string;
   }
   
-  const { title, description, canonicalURL } = Astro.props;
+  const props = {...site, Astro.props};
+  const { title, description, canonicalURL, socialImage } = props;
 ---
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-<link rel="icon" href="/favicon.svg">
-<link rel="stylesheet" href="/style/global.css"/>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href={Astro.resolve('../style/global.css')}/>
 <!-- Primary Meta Tags -->
-<title>{title || site.title}</title>
-<meta name="title" content={title || site.title} />
-<meta name="description" content={description || site.description} />
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
 <!-- Sitemap -->
 <link rel="sitemap" href="/sitemap.xml">
 <!-- Canonical -->
-<link rel="canonical" href={canonicalURL || site.url}>
+<link rel="canonical" href={canonicalURL}>
 
-<link rel="alternate" type="application/rss+xml" title={`${site.name} Blog`} href={`${site.url}/feed/blog.xml`}/>
+<!-- rss feed -->
+<!-- <link rel="alternate" type="application/rss+xml" title={title} href={`${canonicalURL}/feed/blog.xml`}/> -->
 
+<SocialGraph title={title} description={description} canonicalURL={canonicalURL} imageUrl={socialImage} />
 
-<!-- Google Fonts -->
+<!-- Favicons -->
+<!-- made here: realfavicongenerator.net -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#2b5797">
+<meta name="theme-color" content="#ffffff">
+
+<!-- Google fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- asyc load material icons -->
-<link
-rel="preload"
-href="https://fonts.googleapis.com/icon?family=Material+Icons"
-as="style"
-onload="this.onload=null;this.rel='stylesheet'">
-<noscript>
-  <link
-    href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet"
-    type="text/css">
-</noscript>
-<link
-rel="preload"
-href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
-as="style"
-onload="this.onload=null;this.rel='stylesheet'">
-<noscript>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
-    rel="stylesheet"
-    type="text/css">
-</noscript>
+<link href="https://fonts.googleapis.com/css2?family=Monda&family=Mulish:wght@400;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet"> 
