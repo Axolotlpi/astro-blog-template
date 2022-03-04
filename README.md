@@ -20,14 +20,38 @@ Thank you Jaydan for the good SEO**
 
 ## Usage
 
-These are the same as the Astro defaults
+As I add to this template, I will keep the most minimal setup here in main,  
+and additional features will go in seperate branches.
 
-**Use this template and install**  
- npm i  
-**Start your dev server**  
- npm run dev  
-**Build to ./dist**  
- npm run build
+Therefore, if you wish to use any of the branches I suggest  
+checking the box when you choose "use this template" and  
+rebase main onto the ones you want then delete the branches.
+
+**Use this template**
+
+**Rebase features you want**
+
+```
+git rebase tailwind
+```
+
+**Install dependencies**
+
+```
+npm i
+```
+
+**Start your dev server**
+
+```
+npm run dev
+```
+
+**Build to ./dist**
+
+```
+npm run build
+```
 
 ## Organization Explained (work in progress)
 
