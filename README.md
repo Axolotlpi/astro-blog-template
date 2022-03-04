@@ -18,6 +18,10 @@ Thank you Jaydan for the good SEO**
 - Basic Sanity helpers
 - My taste in organization
 
+### This Branch:
+
+Adds Tailwind. We've moved style directory so it can be processed by postcss, we've added an opinionated global.css, and there's a simple tailwind config to start off.
+
 ## Usage
 
 As I add to this template, I will keep the most minimal setup here in main,  
